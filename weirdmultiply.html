@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weird Multiply</title>
+</head>
+<style>
+    body{
+        background-color: lightgray;
+        font-family: Verdana, Geneva, Tahoma, sans-serif;
+    }
+    .container{
+        /* border: 2px solid green; */
+    }
+    .card{
+        background-color: white;
+        padding: 15px;
+        border-radius: 5px;
+        box-shadow: 10px 10px;
+    }
+    .flex{
+        display: flex;
+    }
+    .flex-column{
+        flex-direction: column;
+    }
+    .center{
+        justify-content: center;
+    }
+    .align-center{
+        align-items: center;
+    }
+    .form-control{
+        width: 100%;
+        height: 25px;
+    }
+
+    .btn{
+        padding: 4px 24px;
+        margin-top: 10px;
+        border:none;
+    }
+    .btn-danger{
+        background-color: crimson;
+        color: white;
+    }
+    .btn-dark{
+        background-color: black;
+        color: white;
+    }
+
+    .btn-dark:hover{
+        background-color: white;
+        color: black;
+        outline: 1px solid black;
+    }
+
+    .btn-danger:hover{
+        background-color: transparent;
+        color: black;
+        outline: 1px solid rgb(204, 17, 54);
+    }
+</style>
+<body>
+    <div class="flex flex-column center align-center" style="height: 100vh;">
+        <div class="card" style="margin-bottom: 50px;">
+            <input type="number" id="num" class="form-control" >
+            <button class="btn btn-dark" onclick="result()">result</button>
+        </div>
+        <div class="card" style="margin-bottom: 50px; width: 17rem;" id="card-result">
+            <h2>Result</h2>
+            <p id="result"></p>
+        </div>
+    </div>
+    <script>
+        // console.log(number);
+        const card = document.getElementById('card-result');
+        card.style.display = "none";
+
+        function result(){
+            let number = document.getElementById('num').value;
+            card.style.display = "block";
+            document.getElementById('result').innerHTML +=weirdMultiply(number) + '<br>'
+            console.log(weirdMultiply(number));
+        }
+        
+        function weirdMultiply(number){
+
+            if(number.toString().length == 1){
+                return number;
+            }
+
+            // let digits = number.toString().split('').map(Number);
+            let numStr = number.toString()
+            let digits = Array.from(numStr,Number);
+            console.log(digits);
+            
+            let result =1;
+            digits.map((d)=>{
+                result *= d
+            })
+            
+
+           return weirdMultiply(result);
+        }
+    </script>
+</body>
+</html>
